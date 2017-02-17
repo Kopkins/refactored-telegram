@@ -45,7 +45,7 @@ class tool:
         for direction in train_directions:
             for trains in direction:
                 for train in direction[trains]:
-                    self.trains.append(train_from_dict(train))
+                    self.trains.append(Train.from_dict(train))
 
 
 class Train():
@@ -65,11 +65,11 @@ class Train():
         return string if self.late == 'On Time' else utils.error_string(string)
 
 
-def train_from_dict(d):
-    track_change = d['track_change']
-    platform_change = d['platform_change']
-    depart_time = d['depart_time']
-    train = Train(d['train_id'], d['destination'], d['track'],
-            track_change, d['platform'], platform_change, d['service_type'],
-            depart_time, d['status'])
-    return train
+    def from_dict(d):
+        track_change = d['track_change']
+        platform_change = d['platform_change']
+        depart_time = d['depart_time']
+        train = Train(d['train_id'], d['destination'], d['track'],
+                track_change, d['platform'], platform_change, d['service_type'],
+                depart_time, d['status'])
+        return train
