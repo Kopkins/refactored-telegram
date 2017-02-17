@@ -9,6 +9,7 @@ class tool:
         self.api_path = 'http://www3.septa.org/hackathon/Arrivals/Suburban%20Station/{}/'
         self.num_trains = 5
         self.filters = {}
+        self.trains = []
         
         menu_options = []
         menu_options.append(('List Trains', lambda : self.fetch_trains()))
@@ -34,7 +35,7 @@ class tool:
 
     def fetch_trains(self):
         req = requests.get(self.api_path.format(self.num_trains))
-        print(req.json())
+        print(req.text)
 
 
 class Train():

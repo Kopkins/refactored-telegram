@@ -1,3 +1,4 @@
+from util import utils
 
 class menu():
     def __init__(self, option_action_pairs):
@@ -8,12 +9,15 @@ class menu():
         for i in op_nums:
             print(i, ")", self.options[i - 1].string)
 
-        entry = int(input())
-        if entry not in op_nums:
-            print('Invalid input')
-            return None
-        else: 
-            self.options[entry - 1].execute()
+        try:
+            entry = int(input('==> '))
+            if entry not in op_nums:
+                utils.print_error('Invalid option')
+            else: 
+                utils.clear_console()
+                self.options[entry - 1].execute()
+        except Exception:
+            utils.print_error('Input not a number')
 
 
 class menu_item():
