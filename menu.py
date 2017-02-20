@@ -1,4 +1,4 @@
-from util import utils
+from utils import text_util
 
 class menu():
     def __init__(self, option_action_pairs):
@@ -11,10 +11,10 @@ class menu():
 
         #try:
         entry = int(input('==> '))
-        utils.clear_console()
+        text_util.clear_console()
         self.options[entry - 1].execute()
         #except ValueError or IndexError:
-            #utils.print_error('Input not a number or is not in menu')
+            #text_util.print_error('Input not a number or is not in menu')
 
 
 class menu_item():

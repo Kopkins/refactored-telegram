@@ -1,6 +1,6 @@
 import os
 
-class utils:
+class text_util:
     #clear console so that printing looks clean
     clear_console = lambda: os.system('clear')
 
