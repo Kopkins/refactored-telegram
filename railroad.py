@@ -3,7 +3,7 @@ import json
 import requests
 from menu import menu
 from utils import text_util
-from train import train
+from Train import Train
 
 class tool:
     def __init__(self):
