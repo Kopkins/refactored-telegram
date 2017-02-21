@@ -9,12 +9,17 @@ class menu():
         for i in op_nums:
             print(i, ")", self.options[i - 1].string)
 
-        #try:
-        entry = int(input('==> '))
-        text_util.clear_console()
-        self.options[entry - 1].execute()
-        #except ValueError or IndexError:
-            #text_util.print_error('Input not a number or is not in menu')
+        try:
+            entry = int(input('==> '))
+        except ValueError:
+            text_util.clear_console()
+            text_util.print_error('Input not a number')
+            return
+        try:
+            text_util.clear_console()
+            self.options[entry - 1].execute()
+        except IndexError:
+            text_util.print_error('Input is not in menu')
 
 
 class menu_item():
