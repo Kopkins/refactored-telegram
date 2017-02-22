@@ -4,6 +4,7 @@ import requests
 from ListMenu import ListMenu
 from utils import text_util
 from Train import Train
+from Table import Table
 
 class tool:
     def __init__(self):
@@ -54,8 +55,9 @@ class tool:
     def fetch_trains(self):
         req = requests.get(self.api_path.format(self.station_id, self.num_trains))
         self.build_trains(req.json())
-        for train in self.trains:
-            print(train)
+        rows = [[train.num, train.dest, train.depart] for train in self.trains]
+        table = Table(rows)
+        print(table)
         
     def build_trains(self, json_data):
         self.trains = []
