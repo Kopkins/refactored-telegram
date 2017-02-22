@@ -19,8 +19,7 @@ class Datetime():
         pattern = re.compile("([A-Za-z]{3,}) (\d{,2}) (\d{,4}) (\d{,2}):(\d{,2}):.*([AP]M)\Z")
         match = pattern.match(string)
         mon, day, year, hour, minute, time_of_day = match.group(1, 2, 3, 4, 5, 6)
+        day, year, hour, minute = map(int, [day, year, hour, minute])
         if time_of_day == 'PM':
-            hour = int(hour) + 12
-        for field in (day, year, minute):
-            field = int(field)
+            hour += 12
         return Datetime(mon, day, year, hour, minute)

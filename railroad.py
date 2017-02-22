@@ -1,7 +1,7 @@
 
 import json
 import requests
-from menu import menu
+from ListMenu import ListMenu
 from utils import text_util
 from Train import Train
 
@@ -20,7 +20,7 @@ class tool:
         menu_options.append(('Set Number of Trains to Show',
                              lambda : self.count_limit()))
         menu_options.append(("Quit", lambda : exit()))
-        self.main_menu = menu(menu_options)
+        self.main_menu = ListMenu(menu_options)
 
 
     def run_main_menu(self):
@@ -34,7 +34,7 @@ class tool:
         station_opts = []
         for station in self.stations:
             station_opts.append((station[1], lambda : self.set_station(station[0])))
-        station_menu = menu(station_opts)
+        station_menu = ListMenu(station_opts)
         station_menu.select_execute()
 
 
@@ -47,9 +47,6 @@ class tool:
 
     def set_station(self, station_id):
         self.station_id = station_id
-
-    def apply_filter(self, f, l):
-        pass
 
     def count_limit(self):
         self.num_trains = input('Trains to Display => ')
