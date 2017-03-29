@@ -3,7 +3,7 @@ import json
 import requests
 from ListMenu import ListMenu
 from utils import text_util
-from Train import Train
+from train import Train
 from Table import Table
 
 class tool:
