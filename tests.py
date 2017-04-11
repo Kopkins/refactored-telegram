@@ -35,6 +35,12 @@ class DatetimeTest(unittest.TestCase):
         string = 'Feb 21 2017 10:04:000 AM'
         d = Datetime.from_api_string(string)
         self.assertEqual("10:04 AM", str(d))
+
+    def test_minute_equal_ten(self):
+        string = 'Apr 11 2017 3:10:000 PM'
+        d = Datetime.from_api_string(string)
+        self.assertEqual("3:10 PM", str(d))
+
         
 
 if __name__ == '__main__':

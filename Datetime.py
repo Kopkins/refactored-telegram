@@ -12,7 +12,7 @@ class Datetime():
     def __str__(self):
         time_of_day = 'PM' if self.hour > 12 else 'AM'
         hour = self.hour if time_of_day == 'AM' else self.hour - 12
-        minute = self.minute if self.minute > 10 else "0{}".format(self.minute)
+        minute = self.minute if self.minute >= 10 else "0{}".format(self.minute)
         return '{}:{} {}'.format(hour, minute, time_of_day)
 
     def from_api_string(string):

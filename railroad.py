@@ -34,10 +34,15 @@ class tool:
             self.load_stations()
         station_opts = []
         for station in self.stations:
-            station_opts.append((station[1], lambda : self.set_station(station[0])))
+            station_opts.append((station[1], self.get_station_setter(station[0])))
         station_menu = ListMenu(station_opts)
         station_menu.select_execute()
 
+
+    def get_station_setter(self, station_id):
+        def func():
+            self.set_station(station_id)
+        return func
 
     def load_stations(self):
         with open(self.stations_file) as in_file:
@@ -55,7 +60,7 @@ class tool:
     def fetch_trains(self):
         req = requests.get(self.api_path.format(self.station_id, self.num_trains))
         self.build_trains(req.json())
-        rows = [[train.num, train.dest, train.depart] for train in self.trains]
+        rows = [train.get_display_strings() for train in self.trains]
         table = Table(rows)
         print(table)
         

@@ -16,8 +16,13 @@ class Train():
 
     def __str__(self):
         string = "Train {} to {} at {}".format(self.num, self.dest, self.depart)
-        return string if self.late == 'On Time' else text_util.error_string(string)
+        return string if self.on_time() else text_util.error_string(string)
 
+    def get_display_strings(self):
+        return  [self.num, self.dest, self.depart]
+
+    def on_time(self):
+        return self.late == 'On Time'
 
     def from_dict(d):
         track_change = d['track_change']

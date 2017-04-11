@@ -29,9 +29,9 @@ class Menu(metaclass=ABCMeta):
         return
 
     class MenuItem():
-        def __init__(self, string, executor):
+        def __init__(self, string, func):
             self.string = string
-            self.executor = executor
+            self.func = func
 
         def execute(self):
-            self.executor()
+            self.func()
