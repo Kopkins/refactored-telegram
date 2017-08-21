@@ -59,17 +59,18 @@ class tool:
 
     def fetch_trains(self):
         req = requests.get(self.api_path.format(self.station_id, self.num_trains))
-        self.build_trains(req.json())
+        self.trains = self.build_trains(req.json())
         rows = [train.get_display_strings() for train in self.trains]
         table = Table(rows)
         print(table)
         
     def build_trains(self, json_data):
-        self.trains = []
+        train_list = []
         key = list(json_data.keys())[0]
         train_directions = json_data[key]
         for direction in train_directions:
             for trains in direction:
                 for train in direction[trains]:
-                    self.trains.append(Train.from_dict(train))
+                    train_list.append(Train.from_dict(train))
+        return train_list
 

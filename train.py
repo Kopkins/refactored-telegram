@@ -3,7 +3,7 @@ from utils import text_util
 from Datetime import Datetime
 
 class Train():
-    def __init__(self, num, dest, track, track_change, pltfm, pltfm_change, expr, depart, late):
+    def __init__(self, num, dest, track, track_change, pltfm, pltfm_change, expr, depart, direction, late):
         self.num = num
         self.dest = dest
         self.track = track
@@ -12,6 +12,7 @@ class Train():
         self.pltfm_change = pltfm_change
         self.expr = expr
         self.depart = depart
+        self.direction = direction
         self.late = late
 
     def __str__(self):
@@ -31,6 +32,6 @@ class Train():
         
         train = Train(d['train_id'], d['destination'], d['track'],
                 track_change, d['platform'], platform_change, d['service_type'],
-                depart_time, d['status'])
+                depart_time, d['direction'], d['status'])
 
         return train
