@@ -41,6 +41,10 @@ class DatetimeTest(unittest.TestCase):
         d = Datetime.from_api_string(string)
         self.assertEqual("3:10 PM", str(d))
 
+    def test_new_api_string(self):
+        string = '2017-09-19 16:47:00.000'
+        d = Datetime.from_api_string(string)
+        self.assertEqual("4:47 PM", str(d))
         
 
 if __name__ == '__main__':

@@ -18,8 +18,23 @@ class Datetime():
     def from_api_string(string):
         pattern = re.compile("([A-Za-z]{3,}) (\d{,2}) (\d{,4}) (\d{,2}):(\d{,2}):.*([AP]M)\Z")
         match = pattern.match(string)
+        if not match:
+            return Datetime.new_match(string)
+        else:
+            return Datetime.old_match(match)
+
+
+    def old_match(match):
         mon, day, year, hour, minute, time_of_day = match.group(1, 2, 3, 4, 5, 6)
         day, year, hour, minute = map(int, [day, year, hour, minute])
         if time_of_day == 'PM':
             hour += 12
         return Datetime(mon, day, year, hour, minute)
+        
+    def new_match(string):
+            pattern = re.compile("(\d{,4})-(\d{,2})-(\d{,2}) (\d{,2}):(\d{,2}).*")
+            match = pattern.match(string)
+            year, month, day, hour, minute = match.group(1, 2, 3, 4, 5)
+            month, day, year, hour, minute = map(int, [month, day, year, hour, minute])
+            return Datetime(month, day, year, hour, minute)
+
