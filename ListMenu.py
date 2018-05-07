@@ -1,5 +1,5 @@
 
-from Menu import Menu
+from menu import Menu
 from utils import text_util
 
 class ListMenu(Menu):
